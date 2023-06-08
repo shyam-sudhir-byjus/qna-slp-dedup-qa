@@ -1,4 +1,3 @@
-from difflib import SequenceMatcher
 import html2text
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
@@ -238,12 +237,6 @@ def find_max_substring(sentence1, sentence2):
     return substring
 
 
-def compare_sentences(sentence1, sentence2):
-    matcher = SequenceMatcher(None, sentence1, sentence2)
-    similarity_ratio = matcher.ratio()
-    return similarity_ratio
-
-
 def find_substring_flag(qna_ques, blue_ques):
     max_substring = len(find_max_substring(qna_ques, blue_ques))
     max_substring1 = len(find_max_substring(blue_ques, qna_ques))
@@ -300,11 +293,11 @@ def find_tags_for_similarity(qna_qns,blue_qns):
         "flag_exact_duplicates": exact_duplicates_flag,
         "flag_same_type_duplicates": same_type_duplicates_flag,
         "flag_different_nouns_duplicates": noun_type_duplicates_flag,
-        "flag_find_substring": find_substring_flag(qna_ques, blue_ques),
-        "exact_duplicates_ratio": (jac_sim_preprocess_2 + jac_sim_preprocess_6)/2,
-        "same_type_duplicates_ratio": jac_sim_remove_digits,
-        "different_nouns_duplicates": jac_sim_nouns,
-        "numbers_ratio": jac_sim_numbers,
+        "flag_find_substring": find_substring_flag(qna_ques, blue_ques)
+        # "exact_duplicates_ratio": (jac_sim_preprocess_2 + jac_sim_preprocess_6)/2,
+        # "same_type_duplicates_ratio": jac_sim_remove_digits,
+        # "different_nouns_duplicates": jac_sim_nouns,
+        # "numbers_ratio": jac_sim_numbers,
     }   
 
 
