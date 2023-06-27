@@ -11,8 +11,8 @@ import string
 from pylatexenc.latex2text import LatexNodes2Text
 import re
 import math
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+# from sentence_transformers import SentenceTransformer
+# from sklearn.metrics.pairwise import cosine_similarity
 
 
 lemmatizer = WordNetLemmatizer()
@@ -204,27 +204,32 @@ def get_images(b):
     return [img['src'] for img in b.findAll('img')]
 
 
-def get_semantic_similarity(word1, word2):
-    model = SentenceTransformer('bert-base-nli-mean-tokens')  
+from sentence_transformers import SentenceTransformer, util
+from nltk.corpus import words
 
-    word1_embedding = model.encode(word1, convert_to_tensor=True).reshape(-1,1)
-    word2_embedding = model.encode(word2, convert_to_tensor=True).reshape(-1,1)
-
-    similarity = cosine_similarity(word1_embedding, word2_embedding)[0][0]
-    return similarity
-
-
-def get_noun31_noun32_similarity(nouns1, nouns2):
+def get_noun_sim_mini_LLM(nouns1, nouns2):
     sim_list = []
     for noun1 in nouns1:
         for noun2 in nouns2:
             if noun1 == noun2:
                 continue
-            sim = get_semantic_similarity(noun1, noun2)
-            if (noun1, noun2 ,sim) not in sim_list and sim > 0.5:
+            sim = sbert_similarity(noun1, noun2)
+            if (noun1, noun2 ,sim) not in sim_list and sim >= 0.2 and sim <= 0.9:
                 sim_list.append((noun1, noun2 ,sim))
+    return sim_list
+
+
+def sbert_similarity(noun1, noun2):
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+
+    sentences1 = [noun1]
+    sentences2 = [noun2]
     
-    return len(sim_list) >= 1 and len(sim_list) <= 4
+    embeddings1 = model.encode(sentences1, convert_to_tensor=True)
+    embeddings2 = model.encode(sentences2, convert_to_tensor=True)
+
+    cosine_scores = util.cos_sim(embeddings1, embeddings2)
+    return cosine_scores
 
 
 def check_noun_similarity(nouns1, nouns2):
@@ -245,10 +250,12 @@ def check_noun_similarity(nouns1, nouns2):
     pos_tags_nouns1 = pos_tag(nouns1)
     pos_tags_nouns2 = pos_tag(nouns2)
 
-    nouns1 = [word for word, pos in pos_tags_nouns1 if pos not in ['JJ', 'JJR', 'JJS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']]
-    nouns2 = [word for word, pos in pos_tags_nouns2 if pos not in ['JJ', 'JJR', 'JJS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']]
+    nouns1 = [word for word, pos in pos_tags_nouns1 if pos not in ['JJ', 'JJR', 'JJS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] and word in words.words()]
+    nouns2 = [word for word, pos in pos_tags_nouns2 if pos not in ['JJ', 'JJR', 'JJS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] and word in words.words()]
+
+    sim_bert_list = get_noun_sim_mini_LLM(nouns1, nouns2)
     
-    return get_noun31_noun32_similarity(nouns1, nouns2)    
+    return len(sim_bert_list) >= 1
 
 
 def get_preds(row):
@@ -270,7 +277,7 @@ def get_preds(row):
     dup_list = []
 
     if f1 >= 0.95:
-        dup_list.append(['exact'])
+        return 1, ['exact']
     
     b1 = BeautifulSoup(s1, features='lxml')
     b2 = BeautifulSoup(s2, features='lxml')

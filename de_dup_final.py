@@ -12,7 +12,7 @@ from datetime import datetime
 import warnings
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-from da_lpp.de_dup_final_utils import s1_intersect, s2_intersect, jac_sim, \
+from de_dup_final_utils import s1_intersect, s2_intersect, jac_sim, \
     text_split_2, text_split_6, text_split, min_hash_set, get_preds, remove_digits_formulae, \
         extract_numbers, remove_nouns, noun_detection
 import nltk
