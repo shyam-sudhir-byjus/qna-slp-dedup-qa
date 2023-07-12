@@ -1,0 +1,84 @@
+{
+    "questions": [
+        {
+            "question": "What is the capital of France? And what is the population of Paris?",
+            "subquestion": "what is the population of Paris?"
+        },
+        {
+            "question": "Who wrote the novel 'Pride and Prejudice'? And what other prominent novels did they write?",
+            "subquestion": "what other famous novels did they write?"
+        },
+        {
+            "question": "What are its available storage options? What are the main features of the iPhone 12?",
+            "subquestion": "What are the main feature of the iPhone twelve ?"
+        },
+        {
+            "question": "What are the requirements for obtaining a driver's license? And what documents do I need to bring?",
+            "subquestion": "What are the requirement for obtain a driver's license ?"
+        },
+        {
+            "question": "How does photosynthesis work? And what is the role of chlorophyll in the process?",
+            "subquestion": "How does photosynthesis work ?"
+        },
+        {
+            "question": "What is the tallest mountain in the world? And what is its height?",
+            "subquestion": "What be the tall mountain inch the universe ?"
+        },
+        {
+            "question": "Who painted the Mona Lisa? And what is the significance of the painting?",
+            "subquestion": "World_Health_Organization paint the Anglesey Lisa ?"
+        },
+        {
+            "question": "What is the formula for calculating the area of a circle? And what is the value of pi?",
+            "subquestion": "What be the formula for calculate the area of angstrom circle ?"
+        },
+        {
+            "question": "How does the immune system work? And what are the different types of immune cells?",
+            "subquestion": "How Department_of_Energy the immune system work ?"
+        },
+        {
+            "question": "What are the major causes of climate change? And what are the potential consequences?",
+            "subquestion": "What are the major cause of climate change ?"
+        },
+        {
+            "question": "Who is the author of the play 'Romeo and Juliet'? And what is the genre of the play?",
+            "subquestion": "World_Health_Organization be the writer of the play 'Romeo and Juliet ' ?"
+        },
+        {
+            "question": "What are the fundamental principles of democracy? And what are some examples of democratic countries?",
+            "subquestion": "What are the fundamental principle of democracy ?"
+        },
+        {
+            "question": "How does a computer process data? And what is the role of the CPU?",
+            "subquestion": "How Department_of_Energy angstrom computer procedure data ?"
+        },
+        {
+            "question": "What are the symptoms of COVID-19? And what are the preventive measures?",
+            "subquestion": "What are the symptom of COVID-19 ?"
+        },
+        {
+            "question": "Who discovered electricity? And what are some practical applications of electricity?",
+            "subquestion": "World_Health_Organization detect electricity ?"
+        },
+        {
+            "question": "What are the different types of renewable energy sources? And what are their advantages?",
+            "subquestion": "What are the different type of renewable energy beginning ?"
+        },
+        {
+            "question": "Who is the founder of Microsoft? And what are some notable Microsoft products?",
+            "subquestion": "World_Health_Organization be the laminitis of Microsoft ?"
+        },
+        {
+            "question": "What are the characteristics of a mammal? And what are some examples of mammals?",
+            "subquestion": "What are the feature of angstrom mammal ?"
+        },
+        {
+            "question": "Who is the lead vocalist of the band 'Queen'? And what are some popular songs by the band?",
+            "subquestion": "World_Health_Organization be the lead singer of the set 'Queen ' ?"
+        },
+        {
+            "question": "What are the fundamental principles of physics? And what are some key laws of physics?",
+            "subquestion": "What are the fundamental principle of physics ?"
+        }
+    ]
+}
